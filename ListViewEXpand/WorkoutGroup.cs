@@ -52,7 +52,7 @@ namespace ListViewEXpand
         {
             ObservableCollection<WorkoutGroup> Groups = new ObservableCollection<WorkoutGroup>
             {
-                new WorkoutGroup("Htting","H")
+                new WorkoutGroup("Hitting","H")
                 {
                     new Workout{Name="Tee Drill", Description="Hit on the tee",Icon="" },
                      new Workout{Name="Soft Toss", Description="Softly toss the ball from the side",Icon=""  },
