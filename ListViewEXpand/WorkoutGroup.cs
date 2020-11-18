@@ -9,7 +9,6 @@ namespace ListViewEXpand
     public class WorkoutGroup : ObservableCollection<Workout>, INotifyPropertyChanged
     {
         private bool _expanded;
-
         public bool Expanded
         {
             get { return _expanded; }
@@ -22,9 +21,14 @@ namespace ListViewEXpand
                 }
             }
         }
+
+        public string ShortName { get; set; }
+
+        public int WorkoutCount { get; set; }
+
         public string Title { get; set; }
 
-        //Different icons for if Expanded true or false 
+        //TODO: Get up and down arrows
         public string StateIcon
         {
             get { return Expanded ? "" : ""; }
@@ -32,14 +36,8 @@ namespace ListViewEXpand
 
         public string TitleWithItemCount
         {
-            get { return string.Format("{0} ({1})", Title, FoodCount); }
+            get { return string.Format("{0} ({1})", Title, WorkoutCount); }
         }
-
-        public string ShortName { get; set; }
-
-        public int FoodCount { get; set; }
-
-
 
         public WorkoutGroup(string title, string shortName, bool expanded = false)
         {

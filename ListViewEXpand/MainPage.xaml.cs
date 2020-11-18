@@ -12,6 +12,7 @@ namespace ListViewEXpand
 {
     public partial class MainPage : ContentPage
     {
+
         private ObservableCollection<WorkoutGroup> _allGroups;
         private ObservableCollection<WorkoutGroup> _expandedGroups;
 
@@ -24,8 +25,7 @@ namespace ListViewEXpand
 
         private void HeaderTapped(object sender, EventArgs args)
         {
-            int selectedIndex = _expandedGroups.IndexOf(
-                ((WorkoutGroup)((Button)sender).CommandParameter));
+            int selectedIndex = _expandedGroups.IndexOf(((WorkoutGroup)((Button)sender).CommandParameter));
             _allGroups[selectedIndex].Expanded = !_allGroups[selectedIndex].Expanded;
             UpdateListContent();
         }
@@ -33,21 +33,27 @@ namespace ListViewEXpand
         private void UpdateListContent()
         {
             _expandedGroups = new ObservableCollection<WorkoutGroup>();
+
+
             foreach (WorkoutGroup group in _allGroups)
             {
-                //Create new FoodGroups so we do not alter original list
+                //Create this new group with group above title,shortname, and if expanded
                 WorkoutGroup newGroup = new WorkoutGroup(group.Title, group.ShortName, group.Expanded);
-                //Add the count of food items for Lits Header Titles to use
-                newGroup.FoodCount = group.Count;
+
+                //Set the count
+                newGroup.WorkoutCount = group.Count;
+
                 if (group.Expanded)
                 {
-                    foreach (Workout food in group)
+                    foreach (Workout workout in group)
                     {
-                        newGroup.Add(food);
+                        newGroup.Add(workout);
                     }
                 }
+
                 _expandedGroups.Add(newGroup);
             }
+
             GroupedView.ItemsSource = _expandedGroups;
         }
     }
